@@ -1,0 +1,123 @@
+* { box-sizing: border-box }
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    min-height: 100vh; // for the situation if the is little content in the sidebar
+    font-family: 'Segoe UI', 'Helvetica', sans-serif;
+}
+
+.sidebar {
+	//flex: 1;
+	width: 180px;
+}
+.main-content--wrap {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.content {
+	flex: 1;
+	
+}
+
+.content-inner--wrap {
+	display: flex;
+	
+}
+
+.content-inner {
+	flex: 4;
+}
+
+.content-sidebar {
+	background-color: #eee;
+	flex: 1;
+}
+
+
+
+// media queries
+
+$tablet: 750px;
+$desktop: 1000px;
+
+
+@mixin breakpoint($point) {
+  @if $point == tablet {
+    @media (min-width: $tablet)  { @content; }
+  }
+  @else if $point == desktop {
+    @media (min-width: $desktop) { @content; }
+  }
+  @else if $point { // allows custom breakpoints
+    @media (min-width: $point) { @content; }
+  }
+}
+
+.visible-till-desktop {
+
+  @include breakpoint(desktop) {
+    display: none;
+  }
+}
+
+.visible-mobile {
+
+  @include breakpoint(tablet) {
+    display: none;
+  }
+}
+
+.visible-tablet {
+  display: none;
+
+  @include breakpoint(tablet) {
+    display: block;
+  }
+  @include breakpoint(desktop) {
+    display: none;
+  }
+}
+
+.visible-desktop {
+  display: none;
+
+  @include breakpoint(desktop) {
+    display: block;
+  }
+}
+
+
+
+
+
+
+// styles
+.sidebar {
+	padding: 40px;
+	background-color: #98989c;
+}
+.header {
+	padding: 6px;
+	background-color: #a27556;
+}
+.footer {
+	padding: 6px;
+	background-color: #4c5061;
+}
+.content {
+	text-align: center;
+	p {
+		font-size: 60px;
+	}
+}
+.mobile-nav {
+	background-color: #eee;
+	padding: 6px;
+}
